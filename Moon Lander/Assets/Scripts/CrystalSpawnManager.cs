@@ -29,7 +29,7 @@ public class CrystalSpawnManager : MonoBehaviour {
             InvokeRepeating("SpawnRandomCrystal", startDelay, spawnInterval);
             crystalCount++;
         }
-        else if (crystalCount = maxCrystals) {
+        else if (crystalCount == maxCrystals) {
             crystalCount = 10;
         }
     }
