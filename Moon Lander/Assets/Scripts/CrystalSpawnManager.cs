@@ -13,10 +13,12 @@ public class CrystalSpawnManager : MonoBehaviour {
     private float spawnRangeY = 20;
     private float spawnRangeZ = 120;
 
-    private float startDelay = 3;
-    private float spawnInterval = 10f;
+    private float startDelay = 2;
+    private float spawnInterval = 4f;
     public int maxCrystals = 10;
     public int crystalCount = 0;
+    private bool stopSpawn = true;
+
     // Start is called before the first frame update
     void Start() {
         
@@ -24,20 +26,16 @@ public class CrystalSpawnManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
-        if (crystalCount < maxCrystals) {
             InvokeRepeating("SpawnRandomCrystal", startDelay, spawnInterval);
-            crystalCount++;
-        }
-        else if (crystalCount == maxCrystals) {
-            crystalCount = 10;
-        }
     }
 
     void SpawnRandomCrystal() {
-        int i = Random.Range(0, crystalPrefabs.Length);
-        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), spawnRangeY, Random.Range(-spawnRangeZ, spawnRangeZ));
-        Instantiate(crystalPrefabs[i], spawnPos, crystalPrefabs[i].transform.rotation);
+        while (stopSpawn && crystalCount < maxCrystals) {
+            crystalCount++;
+            int i = Random.Range(0, crystalPrefabs.Length);
+            Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), spawnRangeY, Random.Range(-spawnRangeZ, spawnRangeZ));
+            Instantiate(crystalPrefabs[i], spawnPos, crystalPrefabs[i].transform.rotation);
+        }
+        stopSpawn = false;
     }
-
 }
