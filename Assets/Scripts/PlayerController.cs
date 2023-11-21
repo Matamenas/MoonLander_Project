@@ -40,13 +40,15 @@ public class PlayerController : MonoBehaviour
         {
             gameOverText.gameObject.SetActive(true);
             restartBtn.gameObject.SetActive(true);
+            Time.timeScale = 0f;
             
         }
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Main Menu");
+        Time.timeScale = 1f;
     }
 }
 
