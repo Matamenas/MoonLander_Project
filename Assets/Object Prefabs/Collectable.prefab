@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 5198865454860957919}
   m_Layer: 8
   m_Name: Collectable
-  m_TagString: Untagged
+  m_TagString: Good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
